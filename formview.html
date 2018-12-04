@@ -4,58 +4,64 @@
 
 <head>
 <meta charset="utf-8">
-<title>Hello...</title>
-<style type="text/css">
-#mainContent {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: xx-large;
-	font-weight: bold;
-	background-color: #E3F0FB;
-	border-radius: 4px;
-	padding: 10px;
-	text-align: center;
-}
-.buttonStyle {
-	border-radius: 4px;
-	border: thin solid #F0E020;
-	padding: 5px;
-	background-color: #F8F094;
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	font-weight: bold;
-	color: #663300;
-	width: 75px;
-}
-
-.buttonStyle:hover {
-	border: thin solid #FFCC00;
-	background-color: #FCF9D6;
-	color: #996633;
-	cursor: pointer;
-}
-.buttonStyle:active {
-	border: thin solid #99CC00;
-	background-color: #F5FFD2;
-	color: #669900;
-	cursor: pointer;
-}
-
-</style>
+<title>Form View</title>
+<link rel="stylesheet" href="formview.css" type="text/css" />
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous">
+</script>
 </head>
 
 <body>
-<div id="mainContent">
-<p id="helloText">?</p>
-<button id="clickButton" class="buttonStyle">click me</button>
-</div>
-<script> 
-var myButton = document.getElementById("clickButton");
-var myText = document.getElementById("helloText");
+     <header>
+      <h1>Form View</h1>
+    </header>
+    <div id="container">
+         
+            <div id="products">
+            	<h3>New Product</h3>
+               
+              
+        		<form id="product" type="post">
+        		<input type="text" id="name" placeholder="Product Name"><br><br>
+        		<input type="text" id="price" placeholder="Price"><br><br>
+        		<input type="text" id="quantity" placeholder="Quantity"><br><br>
+        		<input type="submit" id="submit" value="ADD">
+        		</form>
+            </div>
+    </div>
+    <script type="text/javascript">
+  $(document).ready(function() {
+  $("#submit").click(function(e){
+     var jsonData = {};
 
-myButton.addEventListener('click', doSomething, false)
+   var formData = $("#product").serializeArray();
+  // console.log(formData);
 
-function doSomething() {
-	myText.textContent = "hello, world!";
-}
+   $.each(product, function() {
+        if (jsonData[this.name]) {
+           if (!jsonData[this.name].push) {
+               jsonData[this.name] = [jsonData[this.name]];
+           }
+           jsonData[this.name].push(this.value || '');
+       } else {
+           jsonData[this.name] = this.value || '';
+       }
+
+
+   });
+   console.log(jsonData);
+    $.ajax(
+    {
+        url : "action.php",
+        type: "POST",
+        data : jsonData,
+
+    });
+    e.preventDefault(); 
+});
+});
 </script>
 
 </body>

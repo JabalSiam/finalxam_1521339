@@ -1,0 +1,12 @@
+body{
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+#products{
+    text-align: center;
+    vertical-align: middle;
+    background-color: aliceblue;
+}
