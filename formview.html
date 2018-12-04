@@ -23,7 +23,7 @@
             	<h3>New Product</h3>
                
               
-        		<form id="product" type="post">
+        		<form id="product" type="post" action="listview.html">
         		<input type="text" id="name" placeholder="Product Name"><br><br>
         		<input type="text" id="price" placeholder="Price"><br><br>
         		<input type="text" id="quantity" placeholder="Quantity"><br><br>
@@ -31,38 +31,7 @@
         		</form>
             </div>
     </div>
-    <script type="text/javascript">
-  $(document).ready(function() {
-  $("#submit").click(function(e){
-     var jsonData = {};
-
-   var formData = $("#product").serializeArray();
-  // console.log(formData);
-
-   $.each(product, function() {
-        if (jsonData[this.name]) {
-           if (!jsonData[this.name].push) {
-               jsonData[this.name] = [jsonData[this.name]];
-           }
-           jsonData[this.name].push(this.value || '');
-       } else {
-           jsonData[this.name] = this.value || '';
-       }
-
-
-   });
-   console.log(jsonData);
-    $.ajax(
-    {
-        url : "action.php",
-        type: "POST",
-        data : jsonData,
-
-    });
-    e.preventDefault(); 
-});
-});
-</script>
+    <script type="text/javascript" src="form.js"></script>
 
 </body>
 </html>
